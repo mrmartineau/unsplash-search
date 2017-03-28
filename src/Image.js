@@ -1,0 +1,51 @@
+import React, { Component } from 'react';
+import classNames from 'classnames';
+import './Image.css';
+
+export default class Image extends Component {
+	state = {
+		active: false,
+	}
+
+	constructor(props) {
+		super(props);
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick(event) {
+		console.log(event.target);
+		console.log(event.currentTarget);
+		if (event.target === event.currentTarget) {
+
+		}
+		const active = this.state.active ? false : true;
+		this.setState({
+			active: active,
+		})
+	}
+
+	render() {
+		const props = this.props;
+		const src = this.state.active ? props.src.full : props.src.small;
+		const style = {
+			backgroundColor: props.color,
+			backgroundImage: `url(${src})`,
+		}
+
+		var classes = classNames({
+			'Image': true,
+			'is-active': this.state.active,
+		});
+
+		return (
+			<figure className={classes} title={"Taken by " + props.username} onClick={this.handleClick}>
+				<div className="Image-inner" style={style}>
+					<div className="Image-blob Image-back" onClick={this.handleClick}>&#x21A9;</div>
+					<figcaption className="Image-caption">{"Taken by " + props.username}</figcaption>
+					<a className="Image-blob Image-link" href={props.href}>→</a>
+					<a className="Image-blob Image-download" href={props.download}>↓</a>
+				</div>
+			</figure>
+		);
+	}
+}

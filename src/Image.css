@@ -1,0 +1,65 @@
+.Image {
+	margin: 0;
+	width: 33.333333vw;
+	height: 33.333333vh;
+	position: relative;
+}
+
+.Image-inner {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-position: center center;
+}
+
+.Image.is-active .Image-inner {
+	position: fixed;
+	z-index: 1;
+}
+
+.Image-caption {
+	position: absolute;
+	font-size: 11px;
+	bottom: 10px;
+	left: 10px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.Image-blob {
+	display: none;
+}
+
+.Image.is-active .Image-blob {
+	display: block;
+	border-radius: 50%;
+	background-color: rgba(255,255,255,0.65);
+	color: rgba(0,0,0,0.6);
+	font-size: 22px;
+	font-family: sans-serif;
+	line-height: 55px;
+	width: 50px;
+	height: 50px;
+	text-decoration: none;
+}
+
+.Image-back {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+}
+
+.Image-link {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+
+.Image-download {
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+}

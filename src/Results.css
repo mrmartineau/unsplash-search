@@ -1,0 +1,4 @@
+.Results {
+	display: flex;
+	flex-wrap: wrap;
+}

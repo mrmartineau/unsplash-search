@@ -1,0 +1,45 @@
+.App {
+  text-align: center;
+}
+
+.App-title {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.App-input {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 20px;
+  font-weight: 300;
+  width: 80%;
+  display: block;
+  transform: translate(-50%,-50%);
+  height: 2em;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  padding: 0 0.5em;
+  border-radius: 0.5em;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  transition: all 200ms ease-in-out;
+  z-index: 1;
+}
+
+@media screen and (min-width: 600px) {
+  .App-input {
+    width: 50%;
+    font-size: 30px;
+  }
+}
+
+.App-input:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.App-input::placeholder {
+  color: #fff;
+}
