@@ -9,7 +9,7 @@ const unsplash = new Unsplash({
 	callbackUrl: "urn:ietf:wg:oauth:2.0:oob"
 });
 
-const defaultSearch = 'mountains';
+const defaultSearch = 'space';
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -57,14 +57,22 @@ export default class App extends React.Component {
 	render() {
 		const { results } = this.state;
 		return (
-			<form className="App" onSubmit={this.handleSearch}>
-				<input className="App-input" type="search" placeholder="Search Unsplash" value={this.state.search} onChange={this.handleSearchChange}/>
-				{ results ? (
-					<Results results={results} />
-				) : (
-					<h2>Loading...</h2>
-				)}
-			</form>
+			<div className="App">
+				<header className="Masthead">
+					<form className="Search" onSubmit={this.handleSearch}>
+						<input className="Search-input" type="search" placeholder="Search Unsplash" value={this.state.search} onChange={this.handleSearchChange}/>
+						<button className="Search-submit">Go</button>
+					</form>
+				</header>
+
+				<section className="Results">
+					{ results ? (
+						<Results results={results} />
+					) : (
+						<h2>Loading...</h2>
+					)}
+				</section>
+			</div>
 		);
 	}
 }

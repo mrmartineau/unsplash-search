@@ -1,45 +1,40 @@
-.App {
+.App {}
+
+.Masthead {
   text-align: center;
+  padding: 10px;
+  height: 60px;
 }
 
-.App-title {
-  position: absolute;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+.Search {
+  display: flex;
 }
 
-.App-input {
-  position: fixed;
-  top: 50%;
-  left: 50%;
+.Search-input {
+  display: block;
   font-size: 20px;
   font-weight: 300;
-  width: 80%;
-  display: block;
-  transform: translate(-50%,-50%);
-  height: 2em;
+  width: calc(100% - 70px);
+  height: 40px;
   border: 2px solid rgba(0, 0, 0, 0.4);
-  padding: 0 0.5em;
-  border-radius: 0.5em;
-  background-color: rgba(0, 0, 0, 0.45);
-  color: #fff;
+  padding: 0.5em;
+  border-radius: 0.2em 0 0 0.2em;
   transition: all 200ms ease-in-out;
   z-index: 1;
 }
 
-@media screen and (min-width: 600px) {
-  .App-input {
-    width: 50%;
-    font-size: 30px;
-  }
-}
-
-.App-input:focus {
+.Search-input:focus {
   outline: none;
   border-color: rgba(0, 0, 0, 0.8);
-  background-color: rgba(0, 0, 0, 0.6);
 }
-.App-input::placeholder {
+
+.Search-submit {
+  height: 40px;
+  width: 70px;
+  font-size: 20px;
+  font-weight: 300;
+  border-radius: 0 0.2em 0.2em 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 0;
   color: #fff;
 }

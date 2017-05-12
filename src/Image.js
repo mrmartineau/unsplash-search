@@ -38,12 +38,15 @@ export default class Image extends Component {
 		});
 
 		return (
-			<figure className={classes} title={"Taken by " + props.username} onClick={this.handleClick}>
+			<figure className={classes} title={"By " + props.username} onClick={this.handleClick}>
 				<div className="Image-inner" style={style}>
+					<figcaption className="Image-caption">{"By " + props.username}</figcaption>
 					<div className="Image-blob Image-back" onClick={this.handleClick}>&#x21A9;</div>
-					<figcaption className="Image-caption">{"Taken by " + props.username}</figcaption>
-					<a className="Image-blob Image-link" href={props.href}>→</a>
-					<a className="Image-blob Image-download" href={props.download}>↓</a>
+
+					<div className="Image-btns">
+						<a className="Image-blob Image-download" href={props.download}>↓</a>
+						<a className="Image-blob Image-link" href={props.href} target="_blank">→</a>
+					</div>
 				</div>
 			</figure>
 		);
