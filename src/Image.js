@@ -26,10 +26,12 @@ export default class Image extends Component {
 
 	render() {
 		const props = this.props;
-		const src = this.state.active ? props.src.full : props.src.small;
 		const style = {
 			backgroundColor: props.color,
-			backgroundImage: `url(${src})`,
+			backgroundImage: `url(${props.src.small})`,
+		}
+		const fullStyle = {
+			backgroundImage: `url(${props.src.full})`,
 		}
 
 		var classes = classNames({
@@ -40,6 +42,9 @@ export default class Image extends Component {
 		return (
 			<figure className={classes} title={"By " + props.username} onClick={this.handleClick}>
 				<div className="Image-inner" style={style}>
+					{
+						this.state.active && <div className="Image-full" style={fullStyle}></div>
+					}
 					<figcaption className="Image-caption">{"By " + props.username}</figcaption>
 					<div className="Image-blob Image-back" onClick={this.handleClick}>&#x21A9;</div>
 

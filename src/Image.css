@@ -14,6 +14,12 @@
 }*/
 
 .Image-inner {
+	transition: transform 500ms ease-in-out;
+	cursor: pointer;
+}
+
+.Image-inner,
+.Image-full {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -21,8 +27,6 @@
 	left: 0;
 	background-size: cover;
 	background-position: center center;
-	transition: transform 500ms ease-in-out;
-	cursor: pointer;
 }
 
 .Image.is-active .Image-inner {
