@@ -13,8 +13,8 @@ export default class Image extends Component {
 	}
 
 	handleClick(event) {
-		console.log(event.target);
-		console.log(event.currentTarget);
+		// console.log(event.target);
+		// console.log(event.currentTarget);
 		if (event.target === event.currentTarget) {
 
 		}
