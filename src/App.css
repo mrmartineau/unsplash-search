@@ -21,6 +21,7 @@
   border-radius: 0.2em 0 0 0.2em;
   transition: all 200ms ease-in-out;
   z-index: 1;
+  -webkit-appearance: none;
 }
 
 .Search-input:focus {
