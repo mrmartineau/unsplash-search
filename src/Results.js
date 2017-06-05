@@ -5,7 +5,6 @@ import Message from './Message';
 
 export default props => {
   const { results } = props;
-  console.log('results', results);
   const images = results.map(result => (
     <Image
       src={result.urls}
@@ -14,6 +13,7 @@ export default props => {
       username={result.user.username}
       color={result.color}
       download={result.links.download}
+      active={props.active}
     />
   ));
   return (
@@ -22,7 +22,7 @@ export default props => {
         props.results.length > 0
         ?
           images
-        : <Message>No results 😢</Message>
+        : <Message>No results <span role="img" aria-label="sad">😢</span></Message>
       }
     </div>
   );

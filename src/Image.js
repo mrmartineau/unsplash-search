@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import './Image.css';
 
-
 export default class Image extends Component {
   state = {
     active: false,
@@ -11,21 +10,20 @@ export default class Image extends Component {
 
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleActive = this.handleActive.bind(this);
     this.handleShowInfo = this.handleShowInfo.bind(this);
   }
 
-  handleClick(event) {
-    const active = this.state.active ? false : true;
-    this.setState({
-      active: active,
-    });
+  handleActive(event) {
+    this.setState(prevState => ({
+      active: !prevState.active
+    }));
   }
 
   handleShowInfo() {
-    this.setState({
-      infoVisible: !this.state.infoVisible,
-    })
+    this.setState(prevState => ({
+      infoVisible: !prevState.infoVisible
+    }));
   }
 
   getCoordinates(element) {
@@ -69,7 +67,7 @@ export default class Image extends Component {
           {prop}
         </div>
         <div className="Image-info-text-content">
-          {props.src[prop]}
+          <input type="text" value={props.src[prop]} readOnly />
         </div>
       </div>);
     }
@@ -79,7 +77,7 @@ export default class Image extends Component {
         className={classes}
         title={'By ' + props.username}>
 
-        <div className="Image-small" style={style} onClick={this.handleClick}></div>
+        <div className="Image-small" style={style} onClick={this.handleActive}></div>
         {
           this.state.active &&
           <div className="Image-full" style={fullStyle}>
@@ -87,25 +85,26 @@ export default class Image extends Component {
               {'By ' + props.username}
             </figcaption>
 
-            <div className="Image-blob Image-back" onClick={this.handleClick}>
-              👈
-            </div>
-
             <div className="Image-infoWrapper">
-              <div className="Image-blob Image-i" onClick={this.handleShowInfo}>👏 Info</div>
+              <div className="Image-blob Image-i" onClick={this.handleShowInfo}>
+                <svg viewBox="0 0 32 32"><title>info</title><path d="M14 9.5c0-0.825 0.675-1.5 1.5-1.5h1c0.825 0 1.5 0.675 1.5 1.5v1c0 0.825-0.675 1.5-1.5 1.5h-1c-0.825 0-1.5-0.675-1.5-1.5v-1z"></path><path d="M20 24h-8v-2h2v-6h-2v-2h6v8h2z"></path><path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13z"></path></svg>
+              </div>
               <div className={infoClasses}>
                 <div className="Image-info-item">
-                  👇 <a href={`${props.download}?force=true`}>Download image</a>
+                  <a href={`${props.download}?force=true`}>Download image</a>
                 </div>
                 <div className="Image-info-item">
-                  👉 <a href={props.href} target="_blank">Visit on Unsplash</a>
+                  <a href={props.href} target="_blank" rel="noopener noreferrer">View on Unsplash</a>
                 </div>
                 <div className="Image-info-item">
-                  🙌 Copy path:
                   {paths}
                 </div>
               </div>
             </div>
+
+            <button className="Image-blob Image-back" onClick={this.handleActive}>
+              <svg viewBox="0 0 32 32"><title>Go back</title><path d="M16 32c8.837 0 16-7.163 16-16s-7.163-16-16-16-16 7.163-16 16 7.163 16 16 16zM16 3c7.18 0 13 5.82 13 13s-5.82 13-13 13-13-5.82-13-13 5.82-13 13-13z"></path><path d="M20.914 9.914l-2.829-2.829-8.914 8.914 8.914 8.914 2.828-2.828-6.086-6.086z"></path></svg>
+            </button>
           </div>
         }
       </figure>

@@ -3,15 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "@kadira/storybook": "^2.21.0",
-    "react-scripts": "^0.9.5"
+    "react-scripts": "^1.0.7"
   },
   "dependencies": {
     "classnames": "^2.2.5",
     "query-string": "^4.3.4",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "unsplash-js": "^4.5.3"
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "unsplash-js": "^4.6.0"
   },
   "scripts": {
     "start": "react-scripts start",

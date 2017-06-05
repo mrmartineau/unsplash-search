@@ -12,49 +12,83 @@ const unsplash = new Unsplash({
   callbackUrl: 'urn:ietf:wg:oauth:2.0:oob',
 });
 
-const defaultSearch = 'space';
-
 export default class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      search: defaultSearch,
+      search: 'London',
+      page: 2,
       results: null,
-    };
+      active: false,
+    }
+    // const search = this.state.search.length > 0
+    //   ? this.state.search
+    //   : defaultSearch;
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.handleSearchRefresh = this.handleSearchRefresh.bind(this);
+    this.handleBack = this.handleBack.bind(this);
   }
 
   componentDidMount() {
-    const urlParams = queryString.parse(location.search);
-    const search = urlParams.search ? urlParams.search : defaultSearch;
+    const urlParams = queryString.parse(window.location.search);
+    const search = urlParams.search ? urlParams.search : this.state.search;
+    this.setState({search: search});
+    console.log('componentDidMount', this.state, search);
     this.searchUnsplash(search);
-    this.setState({search});
+    // this.updateUrl();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate', prevProps, prevState)
   }
 
   handleSearchSubmit(event) {
     event.preventDefault();
     const search = this.state.search.length > 0
       ? this.state.search
-      : defaultSearch;
+      : 'Bristol';
+    console.log('handleSearchSubmit', this.state, event);
     this.searchUnsplash(search);
     this.updateUrl();
   }
 
   handleSearchChange(event) {
+    console.log('handleSearchChange', event.target.value);
     this.setState({
       search: event.target.value,
     });
   }
 
+  handleSearchRefresh(event) {
+    console.log('handleSearchRefresh');
+    this.setState({
+      page: this.state.page + 1,
+    });
+    this.handleSearchSubmit(event);
+  }
+
+  handleBack() {
+    this.setState({
+      active: false,
+    });
+  }
+
   searchUnsplash(search) {
+    // const s = this.state.search || search;
+    this.setState({
+      search: search,
+    });
+    console.log('searchUnsplash', this.state.search, search);
     return unsplash.search
-      .photos(search, 1, 9)
+      .photos(search, this.state.page, 9)
       .then(toJson)
       .then(json => {
         this.setState({
           results: json.results,
         });
+        console.log(this.state);
       })
       .catch(error => {
         console.log(error);
@@ -74,11 +108,17 @@ export default class App extends React.Component {
           value={this.state.search}
           handleSearchChange={this.handleSearchChange}
           handleSearchSubmit={this.handleSearchSubmit}
+          handleBack={this.handleBack}
+          handleSearchRefresh={this.handleSearchRefresh}
         />
         {
           results
-          ? <Results results={results} /> : <Message>⏲ Loading...</Message>
+          ? <Results results={results} active={this.state.active} /> : <Message><span role="img" aria-label="timer">⏲</span> Loading...</Message>
         }
+
+        <footer className="footer">
+          by <a href="https://zander.wtf">Zander</a>
+        </footer>
       </div>
     );
   }
