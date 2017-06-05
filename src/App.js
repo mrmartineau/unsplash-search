@@ -51,7 +51,7 @@ export default class App extends React.Component {
       : 'Bristol';
     console.log('handleSearchSubmit', this.state, event);
     this.searchUnsplash(search);
-    this.updateUrl();
+    //this.updateUrl();
   }
 
   handleSearchChange(event) {
