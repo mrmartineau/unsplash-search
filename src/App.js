@@ -12,6 +12,8 @@ const unsplash = new Unsplash({
   callbackUrl: 'urn:ietf:wg:oauth:2.0:oob',
 });
 
+const defaultSearch = 'sun';
+
 export default class App extends React.Component {
 
   constructor(props) {
@@ -22,9 +24,6 @@ export default class App extends React.Component {
       results: null,
       active: false,
     }
-    // const search = this.state.search.length > 0
-    //   ? this.state.search
-    //   : defaultSearch;
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSearchRefresh = this.handleSearchRefresh.bind(this);
@@ -48,7 +47,7 @@ export default class App extends React.Component {
     event.preventDefault();
     const search = this.state.search.length > 0
       ? this.state.search
-      : 'Bristol';
+      : defaultSearch;
     console.log('handleSearchSubmit', this.state, event);
     this.searchUnsplash(search);
     //this.updateUrl();
