@@ -2,6 +2,7 @@
   "name": "unsplash-search",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://unsplash-search.now.sh",
   "devDependencies": {
     "react-scripts": "^1.0.7"
   },
@@ -20,5 +21,8 @@
     "deploy": "now -n unsplash-search",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
+  },
+  "now": {
+    "alias": "unsplash-search"
   }
 }
