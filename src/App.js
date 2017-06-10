@@ -20,7 +20,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       search: 'London',
-      page: 2,
+      page: 1,
       results: null,
       active: false,
     }
@@ -57,6 +57,7 @@ export default class App extends React.Component {
     console.log('handleSearchChange', event.target.value);
     this.setState({
       search: event.target.value,
+      page: 1,
     });
   }
 
