@@ -4,7 +4,8 @@
   "private": true,
   "homepage": "https://unsplash-search.now.sh",
   "devDependencies": {
-    "react-scripts": "^1.0.7"
+    "react-scripts": "^1.0.7",
+    "serve": "^5.2.2"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -15,12 +16,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "now-start": "serve ./build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "now -n unsplash-search",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "deploy": "now"
   },
   "now": {
     "alias": "unsplash-search"
